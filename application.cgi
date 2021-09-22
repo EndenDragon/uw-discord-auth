@@ -21,7 +21,7 @@ from uwdiscord.app import app
 
 ## Sets the directory so urls all match up.
 import os
-os.environ['SCRIPT_NAME'] = '/jkzhang/uw-discord-auth'
+os.environ['SCRIPT_NAME'] = os.environ['SCRIPT_NAME'][:-1 * len(os.path.basename(__file__))]
 
 ## Import CGIHandler object that will run your Flask site.
 ## Flask is written so that it follows Python Web Server
