@@ -9,7 +9,7 @@
 ## Making installed PIP packages avaliable to be imported in Python
 # PIP Packages directory; ./pypackages means the folder called pypackages located at
 # the current directory as application.cgi
-PIP_PACKAGES_DIR = "./pypackages" ### CHANGE THIS!
+PIP_PACKAGES_DIR = "./pypackages"
 import sys
 sys.path.insert(0, PIP_PACKAGES_DIR)
 
@@ -17,7 +17,11 @@ sys.path.insert(0, PIP_PACKAGES_DIR)
 # Change this line to point to the Flask's app object.
 # from flaskapp import app -> means read flaskapp.py
 # and get the app object.
-from uwdiscord.app import app ### CHANGE THIS!
+from uwdiscord.app import app
+
+## Sets the directory so urls all match up.
+import os
+os.environ['SCRIPT_NAME'] = '/jkzhang/uw-discord-auth'
 
 ## Import CGIHandler object that will run your Flask site.
 ## Flask is written so that it follows Python Web Server
