@@ -5,6 +5,14 @@ Order allow,deny
 Deny from all
 </FilesMatch>
 
+<FilesMatch "(step2|step3)$">
+AuthType Shibboleth
+ShibCompatWith24 on 
+ShibRequireSession on
+ShibRequestSetting redirectToSSL 443
+require shib-session
+</FilesMatch>
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ /jkzhang/uw-discord-auth/application.cgi/$1 [L]
