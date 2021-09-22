@@ -1,0 +1,10 @@
+Options -Indexes
+
+<FilesMatch "\.(htaccess)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /jkzhang/uw-discord-auth/application.cgi/$1 [L]
