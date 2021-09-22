@@ -5,13 +5,18 @@ Order allow,deny
 Deny from all
 </FilesMatch>
 
-<FilesMatch "(step2|step3)$">
+SetEnvIf Request_URI (\d{5,}|\.png)$ noauth=1
+
 AuthType Shibboleth
-ShibCompatWith24 on 
+ShibCompatWith24 on
 ShibRequireSession on
 ShibRequestSetting redirectToSSL 443
+
+Order Deny,Allow
+Satisfy any
+Deny from all
 require shib-session
-</FilesMatch>
+Allow from env=noauth
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
