@@ -17,10 +17,46 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ request.url }}" />
     <meta property="og:description" content="Authenticate with your UWNetID to gain access to this Discord server" />
+
+    <style>
+        body {
+            background-color: #85754d;
+        }
+
+        .navbar {
+            background-color: #4b2e83;
+        }
+
+        .card {
+            background-color: #e8e3d3;
+        }
+
+        .btn-primary {
+            background-color: #4b2e83;
+            border-color: #4b2e83;
+        }
+
+        .btn-primary:hover {
+            background-color: #613ba9;
+            border-color: #4b2e83;
+        }
+        .btn-check:focus + .btn-primary, .btn-primary:focus {
+            background-color: #613ba9;
+            border-color: #4b2e83;
+            box-shadow: 0 0 0 0.25rem rgba(97, 59, 169, 0.5);
+        }
+        .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+            background-color: #613ba9;
+            border-color: #4b2e83;
+        }
+        .btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.25rem rgba(97, 59, 169, 0.5);
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">University of Washington Discord Access</span>
         </div>
@@ -50,9 +86,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="d-md-flex justify-content-between">
             {% if step in [1] %}
-            <div class="card col-sm-12 col-lg-4">
+            <div class="card flex-grow-1">
                 <div class="card-body">
                     <h5 class="card-title">1. Sign in with your UW NetID</h5>
                     <a href="{{ url_for('step2', guild_id=guild.id) }}"><button type="button" class="btn btn-primary btn-lg"><img src="{{ url_for('static', filename='W-Logo_Signature_Left_White.png') }}" style="max-width: 250px;"></button></a>
@@ -60,7 +96,7 @@
             </div>
             {% endif %}
             {% if step in [2, 3] %}
-            <div class="card col-sm-12 col-lg-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">1. UWNetID</h5>
                     <p>
@@ -71,7 +107,7 @@
             </div>
             {% endif %}
             {% if step in [2] %}
-            <div class="card col-sm-12 col-lg-4">
+            <div class="card flex-grow-1">
                 <div class="card-body">
                     <h5 class="card-title">2. Sign in with your Discord</h5>
                     <a href="{{ url_for('step3', guild_id=guild.id) }}"><button type="button" class="btn btn-primary btn-lg"><img src="{{ url_for('static', filename='Discord-Logo+Wordmark-White.png') }}" style="max-width: 100px;"></button></a>
@@ -79,7 +115,7 @@
             </div>
             {% endif %}
             {% if step in [3] %}
-            <div class="card col-sm-12 col-lg-4">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">2. Discord User</h5>
                     <p>
@@ -93,7 +129,7 @@
             </div>
             {% endif %}
             {% if step in [3] and not error %}
-            <div class="card col-sm-12 col-lg-4">
+            <div class="card flex-grow-1">
                 <div class="card-body">
                     <h5 class="card-title">3. Complete Authentication</h5>
                     <form action="{{ url_for('step3', guild_id=guild.id) }}" method="POST">
@@ -103,7 +139,7 @@
             </div>
             {% endif %}
             {% if step in [3] and error %}
-            <div class="card col-sm-12 col-lg-4">
+            <div class="card flex-grow-1">
                 <div class="card-body">
                     <h5 class="card-title">3. Error</h5>
                     <p>We cannot find your Discord user. Please ensure that you have joined the server first before authenticating.</p>
