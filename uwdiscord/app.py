@@ -111,7 +111,7 @@ def discordapiuser_get_current_authenticated_user():
 
 @app.route("/")
 def index():
-    return "Welcome! This is a service to authenticate class Discords. Conceptualized during a UWB Independent Study by Jeremy Zhang."
+    return "Welcome! This is a service to authenticate class Discords. Conceptualized during a UWB Independent Study by Jeremy Zhang.<br>To access a server, please visit {} where SERVER_ID is the ID of your Discord server.".format(url_for("step1", guild_id="SERVER_ID", _external=True))
 
 @app.route("/<guild_id>")
 def step1(guild_id):
