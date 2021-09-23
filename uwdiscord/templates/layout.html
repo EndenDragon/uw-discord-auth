@@ -127,9 +127,7 @@
                 <div class="card-body">
                     <h5 class="card-title">2. Discord User</h5>
                     <p>
-                        {% if user.avatar %}
-                        <img src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png" class="img-thumbnail" style="width: 40px;">
-                        {% endif %}
+                        <img src="https://cdn.discordapp.com/{% if user.avatar %}avatars/{{ user.id }}/{{ user.avatar }}{% else %}embed/avatars/{{ user.discriminator|int % 5 }}{% endif %}.png" class="img-thumbnail" style="width: 40px;">
                         {{ user.username }}#{{ user.discriminator }}
                         <a href="{{ url_for('logout', redirect=url_for('step2', guild_id=guild.id)) }}">(not you?)</a>
                     </p>
