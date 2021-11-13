@@ -8,7 +8,9 @@ Deny from all
 SetEnvIf Request_URI (/|\d{5,}|/static/.*)$ noauth=1
 
 AuthType Shibboleth
-ShibCompatWith24 on
+<IfVersion < 2.4>
+  ShibCompatWith24 on
+</IfVersion>
 ShibRequireSession on
 ShibRequestSetting redirectToSSL 443
 
