@@ -216,6 +216,7 @@ def step3_post(guild_id):
         discordapi_remove_guild_member_role(guild["id"], user["id"], role_id)
     for role_id in guild_config["role_add"]:
         discordapi_add_guild_member_role(guild["id"], user["id"], role_id)
-    discordapi_create_message(guild_config["log_channel"], "**{}#{}** (<@{}>) has authenticated with UWNetID **{}**.".format(user["username"], user["discriminator"], user["id"], request.remote_user))
+    if guild_config.get("log_channel", None):
+        discordapi_create_message(guild_config["log_channel"], "**{}#{}** (<@{}>) has authenticated with UWNetID **{}**.".format(user["username"], user["discriminator"], user["id"], request.remote_user))
     flash('Successfully authenticated your access to the Discord server! You may now close this page.', 'success')
     return redirect(url_for("step3", guild_id=guild_id))
